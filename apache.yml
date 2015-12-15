@@ -1,14 +1,36 @@
 ---
 - hosts: localhost
   connection: local
-  environment:
-    http_proxy: http://172.16.1.5:8080
-    https_proxy: http://172.16.1.5:8080
   tasks:
-   - name: Install Apache2
-     apt: pkg=apache2 state=installed update_cache=true
-   - name: Start Apache2
-     service: name=nginx state=started
-   - name: Install Git
-     apt: pkg=git state=installed update_cache=true
-   
+  - name: Install Apache2
+    apt:
+      pkg: apache2
+      state: installed
+      update_cache: true
+    environment:
+      http_proxy: http://172.16.1.5:8080
+      https_proxy: http://172.16.1.5:8080
+
+  - name: Start Apache2
+    service: 
+      name: apache2
+      state: started
+
+  - name: Install Git
+    apt:
+      pkg: git
+      state: installed
+      update_cache: true
+    environment:
+      http_proxy: http://172.16.1.5:8080
+      https_proxy: http://172.16.1.5:8080
+
+  - name: Create directory 
+    file:
+      path: /var/www/html/website/
+      state: directory
+
+  - name: Clone website code
+    git:
+      repo: https://github.com/sl4shme/roche_lorem.git
+      dest: /var/www/html/website/
