@@ -20,7 +20,6 @@
     apt:
       pkg: git
       state: installed
-      update_cache: true
     environment:
       http_proxy: http://172.16.1.5:8080
       https_proxy: http://172.16.1.5:8080
@@ -34,3 +33,6 @@
     git:
       repo: https://github.com/sl4shme/roche_lorem.git
       dest: /var/www/html/website/
+    environment:
+      http_proxy: http://172.16.1.5:8080
+      https_proxy: http://172.16.1.5:8080
