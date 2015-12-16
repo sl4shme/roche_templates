@@ -11,8 +11,7 @@ class heat::prepare_sql (
     root_password    => $mysqlRootPwd,
     override_options => {
       mysqld => { bind-address => '0.0.0.0'}
-    },
-    notify           => Exec['restart_mysql']
+    }
   }
 
   exec {'restart_mysql':
