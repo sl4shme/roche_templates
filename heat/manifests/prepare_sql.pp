@@ -8,11 +8,17 @@ class heat::prepare_sql (
   $realUser = "$mysqlUser@%"
 
   class { 'mysql::server':
-    root_password => $mysqlRootPwd,
+    root_password    => $mysqlRootPwd,
     override_options => {
       mysqld => { bind-address => '0.0.0.0'}
-    }
+    },
+    notify           => Exec['restart_mysql']
   }
+
+  exec {'restart_mysql':
+    command => "service mysql restart",
+    refreshonly => true
+    }
 
   class { 'mysql::client': }
 
@@ -35,11 +41,3 @@ class heat::prepare_sql (
     require => Mysql_database[$mysqlDb]
   }
 }
-
-class {'heat::prepare_sql':
-  mysqlRootPwd => "plop",
-  mysqlUser => "plop@%",
-  mysqlDb => "plop",
-  mysqlPass => "plop"
-}
-
