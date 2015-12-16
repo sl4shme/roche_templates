@@ -16,7 +16,7 @@ class heat::prepare_sql (
   }
 
   exec {'restart_mysql':
-    command => "service mysql restart",
+    command => "/usr/sbin/service mysql restart",
     refreshonly => true
     }
 
