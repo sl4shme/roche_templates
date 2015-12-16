@@ -25,7 +25,7 @@ class heat::prepare_sql (
   mysql_user { $realUser:
     ensure        => present,
     password_hash => mysql_password($mysqlPass),
-    require => Class['mysql::server']
+    require => Exec['restart_mysql']
   }
 
   mysql_database { $mysqlDb:
