@@ -10,4 +10,9 @@ class heat::prepare_sql (
   }
 
   class { '::mysql::client': }
+
+}
+
+class {'heat::prepare_sql':
+  mysqlRootPwd => "plop"
 }
