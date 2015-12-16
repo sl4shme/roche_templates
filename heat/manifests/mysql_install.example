@@ -1,0 +1,10 @@
+class heat::mysql_install {
+  class {'heat::prepare_sql':
+    mysqlRootPwd => "plop",
+    mysqlUser => "plop",
+    mysqlDb => "plop",
+    mysqlPass => "plop"
+  }
+}
+
+include heat::mysql_install
