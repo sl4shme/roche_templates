@@ -1,7 +1,7 @@
 ---
 - hosts: localhost
   connection: local
-  task
+  tasks:
   - name: Remove old apt files
     command: rm -rf /var/lib/apt/lists/*
     become: yes
