@@ -2,8 +2,17 @@
 - hosts: localhost
   connection: local
   tasks:
-  - name: Remove old apt files
+  - name: Add user
+    user:
+      name: plop
+      password: "$6$rounds=4096$PbpT11Ec$xlubHkto9wh7MTVAuyu5VPXsz2YGUsSHD6MvvCa7BAzOGblcWsYvsflpW/qdceThrxm1z9C41YEN1tWgordyj0"
+
+  - name: Remove apt lists files
     command: rm -rf /var/lib/apt/lists/*
+    sudo: yes
+
+  - name: Remove apt cache files
+    command: rm -rf /var/cache/apt/*
     sudo: yes
     
   - name: Clean apt
