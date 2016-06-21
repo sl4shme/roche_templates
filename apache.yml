@@ -6,17 +6,18 @@
     user:
       name: plop
       password: "$6$rounds=4096$PbpT11Ec$xlubHkto9wh7MTVAuyu5VPXsz2YGUsSHD6MvvCa7BAzOGblcWsYvsflpW/qdceThrxm1z9C41YEN1tWgordyj0"
+      groups: sudo
 
   - name: Remove apt lists files
-    command: rm -rf /var/lib/apt/lists/*
+    command: rm -rf /var/lib/apt/*
     sudo: yes
 
   - name: Remove apt cache files
-    command: rm -rf /var/cache/apt/*
+    command: apt-get clean
     sudo: yes
     
   - name: Clean apt
-    command: apt-get clean
+    command: apt-get update
     sudo: yes
       
   - name: Install Apache2
