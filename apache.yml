@@ -4,11 +4,11 @@
   tasks:
   - name: Remove old apt files
     command: rm -rf /var/lib/apt/lists/*
-    become: yes
+    sudo: yes
     
   - name: Clean apt
     command: apt-get clean
-    become: yes
+    sudo: yes
       
   - name: Install Apache2
     apt:
